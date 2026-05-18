@@ -4,8 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genotype Calculator</title>
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --primary-hover: #357abd;
+            --bg-color: #f5f7fb;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e1e5eb;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 24px;
+            color: #2c3e50;
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus {
+            border-color: var(--primary-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .results-box {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid var(--border-color);
+            display: none;
+        }
+
+        .results-box h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .result-genotype {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .result-percentage {
+            font-weight: 600;
+            color: #27ae60;
+        }
+    </style>
 </head>
 <body>
 
@@ -36,7 +150,7 @@
         </select>
     </div>
 
-    <button id="calculateBtn">Calculate Probabilities</button>
+    <button onclick="calculateGenotype()">Calculate Probabilities</button>
 
     <div class="results-box" id="resultsBox">
         <h2>Offspring Outcome Probabilities:</h2>
@@ -44,7 +158,56 @@
     </div>
 </div>
 
-<!-- Link to external JavaScript -->
-<script src="script.js"></script>
+<script>
+    function calculateGenotype() {
+        const mother = document.getElementById('mother').value;
+        const father = document.getElementById('father').value;
+        
+        // Split genotypes into individual alleles (e.g., "AS" -> ['A', 'S'])
+        const motherAlleles = mother.split('');
+        const fatherAlleles = father.split('');
+        
+        const outcomes = {};
+        const totalCombinations = 4;
+
+        // Cross-multiply alleles (Punnett Square logic)
+        for (let m of motherAlleles) {
+            for (let f of fatherAlleles) {
+                // Sort to ensure "SA" becomes "AS" for consistency
+                const combination = [m, f].sort().join('');
+                
+                if (outcomes[combination]) {
+                    outcomes[combination] += 1;
+                } else {
+                    outcomes[combination] = 1;
+                }
+            }
+        }
+
+        // Display Results
+        const resultsBox = document.getElementById('resultsBox');
+        const resultsList = document.getElementById('resultsList');
+        resultsList.innerHTML = ''; // Clear previous results
+
+        // Sort results by highest percentage first
+        const sortedOutcomes = Object.entries(outcomes).sort((a, b) => b[1] - a[1]);
+
+        for (const [genotype, count] of sortedOutcomes) {
+            const percentage = (count / totalCombinations) * 100;
+            
+            const item = document.createElement('div');
+            item.className = 'result-item';
+            item.innerHTML = `
+                <span class="result-genotype">${genotype}</span>
+                <span class="result-percentage">${percentage}%</span>
+            `;
+            resultsList.appendChild(item);
+        }
+
+        // Show the results section
+        resultsBox.style.display = 'block';
+    }
+</script>
+
 </body>
 </html>
