@@ -1,0 +1,128 @@
+/*GOOGLE FONT*/
+@import url();
+
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: -o-linear-gradient(135deg,#2563eb,#7c3aed);
+
+}
+/*MAIN CONTAINER*/
+.container{
+    width: 100%;
+    max-width: 550px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0,2 );
+}
+*/Title*/
+h1{
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 25px;
+    font-size: 32px;
+
+}
+/*INPUT AREA*/
+.input-box{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+.input-box input{
+    flex: 1;
+    padding: 15px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background: #f1f5f9;
+    font-size: 16px;
+    transition: 0.3s;
+}
+.input-box input:focus{
+    border: 2px solid #2563eb;
+    background: white;
+}
+/*ADD BUTTON*/
+.input-box button{
+    padding: 15px 22px;
+    border: none;
+    border-radius: 12px;
+
+background: -moz-linear-gradient(135d #2563eb ,#4f46e5);
+color: white;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: 0.3s;
+
+    
+}
+.input-box button:hover{
+    transform: scale(1.05);
+}
+/*TASK LIST*/
+.task-list{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+*/TASK CARD*/
+.task{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    background: #eff6ff;
+    padding: 18px;
+    border-radius: 15px;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0,05 );
+}
+.task.hover{
+    transform: translateY(-3px);
+}
+.task span{
+    color: #1e293b;
+    font-size: 16px;
+    font-weight: 500;
+}
+*/DELETE BUTTON/
+.delete-btn{
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    background: -moz-linear-gradient(135d,#4338ca,#6d28d9);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.delete-btn:hover{
+   transform: scale(1.1);
+
+   background: linear-gradient(135d #312e81,#5b21b6);
+
+   
+}
+/*MOBILE RESPONSIVE*/
+@media(max-width:600px){
+
+    .input-box{
+        flex-direction: column;
+        .input-box button{
+            width: 100%;
+        }
+    }
+}
