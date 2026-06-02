@@ -1,16 +1,27 @@
 <?php
 
-// Student records system
+// Add new students to this array in the format:
+// ["matric_no" => "...", "name" => "...", "department" => "..."],
 
-$students = [];
+$datas = [
+    [
+        "matric_no" => "CMP2307625",
+        "name" => "Udhedhe Wisdom",
+        "department" => "Software Engineering",    
+    ],
 
-// Add Iyedoh Unity details
-$students[] = [
-    "matric_no" => "CMP2307600",
-    "name" => "Iyedoh Unity",
-    "department" => "Software Engineering"
+    [
+        "matric_no" => "CMP2307621",
+        "name" => "Anthony Ruth Chigozie",
+        "department" => "Software Engineering",    
+    ],
+    [
+        "matric_no" => "CMP2307600",
+        "name" => "Iyedoh Unity Oghenerukevwe",
+        "department" => "Software Engineering",    
+    ],
+    //  add your arrays here
 ];
-
 
 
 ?>
