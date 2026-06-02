@@ -64,6 +64,13 @@ $datas = [
         "name" => "Iyedoh Unity Oghenerukevwe",
         "department" => "Software Engineering",    
     ],
+      [
+        "matric_no" => "CMP2307458",
+        "name" => "Egobudike Angel",
+        "department" => "Computer Science",
+        "username" => "egobudike",
+        "password" => "egobudike123",
+    ],
     //  add your arrays here
 ];
 
